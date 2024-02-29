@@ -1,36 +1,18 @@
-# Welcome to Remix + Vite!
+# Remix + Vite with remix-i18next
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+This app is an example app using Remix + Vite to setup remix-i18next.
 
-## Development
+The app showcase how to set remix-i18next to load the translations from an imported module, it has support for English and Spanish.
 
-Run the Vite dev server:
+## How to run
 
-```shellscript
+```bash
+npm install
 npm run dev
 ```
 
-## Deployment
+Then open your browser and go to [http://localhost:3000](http://localhost:3000)
 
-First, build your app for production:
+You can go to [/?lng=es](http://localhost:3000/?lng=es) to force it to load in Spanish or to [/?lng=en](http://localhost:3000/?lng=en) to force it to load in English. which is also the default.
 
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
+The application detects the locale on the `app/root.tsx`, then in `app/routes/_index.tsx` it uses a combination of `getFixedT` in the loader and `useTranslation` in the component to show the translations.
