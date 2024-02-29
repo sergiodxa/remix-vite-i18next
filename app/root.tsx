@@ -8,14 +8,17 @@ import {
   useLoaderData,
   useRouteLoaderData,
 } from "@remix-run/react";
-import i18nServer from "./modules/i18n.server";
+import i18nServer, { localeCookie } from "./modules/i18n.server";
 import { useChangeLanguage } from "remix-i18next/react";
 
 export const handle = { i18n: ["translation"] };
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const locale = await i18nServer.getLocale(request);
-  return json({ locale });
+  return json(
+    { locale },
+    { headers: { "Set-Cookie": await localeCookie.serialize(locale) } },
+  );
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
