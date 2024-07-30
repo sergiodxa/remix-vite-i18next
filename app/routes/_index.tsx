@@ -7,16 +7,16 @@ import { Form, useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import i18nServer from "~/modules/i18n.server";
 
-export const meta: MetaFunction = () => {
+export const meta: MetaFunction<typeof loader> = ({ data }) => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: data?.title },
+    { name: "description", content: data?.description },
   ];
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const t = await i18nServer.getFixedT(request);
-  return json({ description: t("description") });
+  return json({ title: t("title"), description: t("description") });
 }
 
 export default function Index() {

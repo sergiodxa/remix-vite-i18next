@@ -1,18 +1,20 @@
-import en from "~/locales/en";
-import es from "~/locales/es";
+import { serverOnly$ } from "vite-env-only/macros";
 
-// This is the list of languages your application supports
+import enTranslation from "~/locales/en";
+import esTranslation from "~/locales/es";
+
+// This is the list of languages your application supports, the last one is your
+// fallback language
 export const supportedLngs = ["es", "en"];
 
 // This is the language you want to use in case
-// if the user language is not in the supportedLngs
+// the user language is not in the supportedLngs
 export const fallbackLng = "en";
 
 // The default namespace of i18next is "translation", but you can customize it
-// here
 export const defaultNS = "translation";
 
-export const resources = {
-  en: { translation: en },
-  es: { translation: es },
-};
+export const resources = serverOnly$({
+  en: { translation: enTranslation },
+  es: { translation: esTranslation },
+});
