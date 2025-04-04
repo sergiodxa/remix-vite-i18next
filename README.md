@@ -1,6 +1,6 @@
-# React Router + Vite with remix-i18next
+# React Router with i18next Example App
 
-This app is an example app using React Router + Vite to setup remix-i18next.
+This repo is an example app using React Router with remix-i18next setup.
 
 The app showcase how to set remix-i18next to load the translations from an imported module, it has support for English and Spanish.
 
