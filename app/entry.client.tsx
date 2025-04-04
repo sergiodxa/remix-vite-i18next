@@ -5,7 +5,6 @@ import { hydrateRoot } from "react-dom/client";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { HydratedRouter } from "react-router/dom";
 import I18nextBrowserLanguageDetector from "i18next-browser-languagedetector";
-import { defaultNS, fallbackLng, supportedLngs } from "~/config/i18n";
 import { getInitialNamespaces } from "remix-i18next/client";
 
 async function main() {
@@ -14,12 +13,10 @@ async function main() {
     .use(Fetch)
     .use(I18nextBrowserLanguageDetector)
     .init({
-      defaultNS,
-      fallbackLng,
-      supportedLngs,
+      fallbackLng: "en",
       ns: getInitialNamespaces(),
       detection: { order: ["htmlTag"], caches: [] },
-      backend: { loadPath: "/api/locales?lng={{lng}}&ns={{ns}}" },
+      backend: { loadPath: "/api/locales/{{lng}}/{{ns}}" },
     });
 
   startTransition(() => {

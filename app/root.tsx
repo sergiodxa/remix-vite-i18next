@@ -5,16 +5,20 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useRouteLoaderData,
 } from "react-router";
-import i18nServer, { localeCookie } from "./modules/i18n.server";
 import { useChangeLanguage } from "remix-i18next/react";
 import type { Route } from "./+types/root";
+import {
+  getLocale,
+  i18nextMiddleware,
+  localeCookie,
+} from "./middleware/i18next";
+import { useTranslation } from "react-i18next";
 
-export const handle = { i18n: ["translation"] };
+export const unstable_middleware = [i18nextMiddleware];
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const locale = await i18nServer.getLocale(request);
+export async function loader({ context }: Route.LoaderArgs) {
+  let locale = getLocale(context);
   return data(
     { locale },
     { headers: { "Set-Cookie": await localeCookie.serialize(locale) } }
@@ -22,10 +26,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const loaderData = useRouteLoaderData<typeof loader>("root");
+  let { i18n } = useTranslation();
 
   return (
-    <html lang={loaderData?.locale ?? "en"}>
+    <html lang={i18n.language} dir={i18n.dir(i18n.language)}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

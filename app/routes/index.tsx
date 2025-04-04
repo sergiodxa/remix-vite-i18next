@@ -1,8 +1,8 @@
 import { data } from "react-router";
 import { Form } from "react-router";
 import { useTranslation } from "react-i18next";
-import i18nServer from "~/modules/i18n.server";
 import type { Route } from "./+types";
+import { getInstance } from "~/middleware/i18next";
 
 export function meta({ data }: Route.MetaArgs) {
   return [
@@ -11,9 +11,9 @@ export function meta({ data }: Route.MetaArgs) {
   ];
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
-  let t = await i18nServer.getFixedT(request);
-  return data({ title: t("title"), description: t("description") });
+export async function loader({ context }: Route.LoaderArgs) {
+  let i18n = getInstance(context);
+  return data({ title: i18n.t("title"), description: i18n.t("description") });
 }
 
 export default function Index({ loaderData }: Route.ComponentProps) {

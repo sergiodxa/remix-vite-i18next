@@ -1,32 +1,35 @@
 import { data } from "react-router";
 import { cacheHeader } from "pretty-cache-header";
 import { z } from "zod";
-import { resources } from "~/config/i18n";
+import enTranslation from "~/locales/en";
+import esTranslation from "~/locales/es";
 import type { Route } from "./+types/locales";
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const url = new URL(request.url);
+const resources = {
+  en: { translation: enTranslation },
+  es: { translation: esTranslation },
+};
 
-  // `resources` is only available server-side, but TS doesn't know so we have
-  // to assert it's not undefined here and assign it to another constant to
-  // avoid TS errors below
-  const languages = resources!;
-
+export async function loader({ params }: Route.LoaderArgs) {
   const lng = z
     .string()
-    .refine((lng): lng is keyof typeof languages =>
-      Object.keys(languages).includes(lng)
+    .refine((lng): lng is keyof typeof resources =>
+      Object.keys(resources).includes(lng)
     )
-    .parse(url.searchParams.get("lng"));
+    .safeParse(params.lng);
 
-  const namespaces = languages[lng];
+  if (lng.error) return data({ error: lng.error }, { status: 400 });
+
+  const namespaces = resources[lng.data];
 
   const ns = z
     .string()
     .refine((ns): ns is keyof typeof namespaces => {
-      return Object.keys(languages[lng]).includes(ns);
+      return Object.keys(resources[lng.data]).includes(ns);
     })
-    .parse(url.searchParams.get("ns"));
+    .safeParse(params.ns);
+
+  if (ns.error) return data({ error: ns.error }, { status: 400 });
 
   const headers = new Headers();
 
@@ -45,5 +48,5 @@ export async function loader({ request }: Route.LoaderArgs) {
     );
   }
 
-  return data(namespaces[ns], { headers });
+  return data(namespaces[ns.data], { headers });
 }

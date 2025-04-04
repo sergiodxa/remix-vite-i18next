@@ -15,7 +15,7 @@
         "react-dom": "^19.1.0",
         "react-i18next": "^15.4.1",
         "react-router": "^7.4.1",
-        "remix-i18next": "^7.1.1",
+        "remix-i18next": "^7.2.0",
         "zod": "^3.24.2",
       },
       "devDependencies": {
@@ -559,7 +559,7 @@
 
     "regenerator-runtime": ["regenerator-runtime@0.14.1", "", {}, "sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw=="],
 
-    "remix-i18next": ["remix-i18next@7.1.1", "", { "peerDependencies": { "i18next": "^24.0.0", "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-i18next": "^13.0.0 || ^14.0.0 || ^15.0.0", "react-router": "^7.0.0" } }, "sha512-w0ybNWhWJ1XBNrl4LFxYhhqthVQk+mfCNlXGBYFGUS54TEINOD2tKRD52M8JK14qmRHZUaDyP71g1JlV2rcf2g=="],
+    "remix-i18next": ["remix-i18next@7.2.0", "", { "peerDependencies": { "i18next": "^24.0.0", "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-i18next": "^13.0.0 || ^14.0.0 || ^15.0.0", "react-router": "^7.0.0" } }, "sha512-CoildP1aAWhTPvgDdnwYbwQ7gYG39DPZiiNUfe+CG9MQ2kl4AYmfZT3Bj3sv4JyhNpMFeDiZ7cDbyFVXOd2FRw=="],
 
     "retry": ["retry@0.12.0", "", {}, "sha512-9LkiTwjUh6rT555DtE9rTX+BKByPfrMzEAtnlEtdEwr3Nkffwiihqe2bWADg+OQRjt9gl6ICdmB/ZFDCGAtSow=="],
 
