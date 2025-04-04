@@ -6,4 +6,5 @@ import { envOnlyMacros } from "vite-env-only";
 
 export default defineConfig({
   plugins: [tsconfigPaths(), envOnlyMacros(), tailwindcss(), reactRouter()],
+  server: { port: 3000 },
 });
