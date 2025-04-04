@@ -1,9 +1,10 @@
-import { type LoaderFunctionArgs, json } from "@remix-run/node";
+import { data } from "react-router";
 import { cacheHeader } from "pretty-cache-header";
 import { z } from "zod";
 import { resources } from "~/config/i18n";
+import type { Route } from "./+types/locales";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
 
   // `resources` is only available server-side, but TS doesn't know so we have
@@ -44,5 +45,5 @@ export async function loader({ request }: LoaderFunctionArgs) {
     );
   }
 
-  return json(namespaces[ns], { headers });
+  return data(namespaces[ns], { headers });
 }

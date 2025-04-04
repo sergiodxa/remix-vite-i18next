@@ -1,6 +1,6 @@
-# Remix + Vite with remix-i18next
+# React Router + Vite with remix-i18next
 
-This app is an example app using Remix + Vite to setup remix-i18next.
+This app is an example app using React Router + Vite to setup remix-i18next.
 
 The app showcase how to set remix-i18next to load the translations from an imported module, it has support for English and Spanish.
 
@@ -19,4 +19,4 @@ The application detects the locale on the `app/root.tsx`, then in `app/routes/_i
 
 All translation files are fetched from `/api/locales` resource route which let us easily customize the cache of the translation.
 
-It also uses a Remix cookie object to store the user preferred locale, when the user clicks a button to change from English to Spanish or vice versa, it sets the cookie, if you remove the `?lng` in the URL it will keep the user preferred locale.
+It also uses a React Router cookie object to store the user preferred locale, when the user clicks a button to change from English to Spanish or vice versa, it sets the cookie, if you remove the `?lng` in the URL it will keep the user preferred locale.

@@ -1,23 +1,23 @@
-import { LoaderFunctionArgs, json } from "@remix-run/node";
 import {
+  data,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
   useRouteLoaderData,
-} from "@remix-run/react";
+} from "react-router";
 import i18nServer, { localeCookie } from "./modules/i18n.server";
 import { useChangeLanguage } from "remix-i18next/react";
+import type { Route } from "./+types/root";
 
 export const handle = { i18n: ["translation"] };
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: Route.LoaderArgs) {
   const locale = await i18nServer.getLocale(request);
-  return json(
+  return data(
     { locale },
-    { headers: { "Set-Cookie": await localeCookie.serialize(locale) } },
+    { headers: { "Set-Cookie": await localeCookie.serialize(locale) } }
   );
 }
 
@@ -41,8 +41,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  const { locale } = useLoaderData<typeof loader>();
-  useChangeLanguage(locale);
+export default function App({ loaderData }: Route.ComponentProps) {
+  useChangeLanguage(loaderData.locale);
   return <Outlet />;
 }

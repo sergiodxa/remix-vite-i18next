@@ -4,44 +4,38 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
-    "dev": "remix vite:dev",
-    "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
-    "typecheck": "tsc"
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@remix-run/node": "2.10.3",
-    "@remix-run/react": "2.10.3",
-    "@remix-run/serve": "2.10.3",
-    "i18next": "^23.12.2",
-    "i18next-browser-languagedetector": "^8.0.0",
+    "@react-router/node": "^7.4.1",
+    "@react-router/serve": "^7.4.1",
+    "i18next": "^24.2.3",
+    "i18next-browser-languagedetector": "^8.0.4",
     "i18next-fetch-backend": "^6.0.0",
-    "isbot": "^5.1.13",
+    "isbot": "^5.1.25",
     "pretty-cache-header": "^1.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-i18next": "^14.1.3",
-    "remix-i18next": "^6.1.0",
-    "zod": "^3.23.8"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-i18next": "^15.4.1",
+    "react-router": "^7.4.1",
+    "remix-i18next": "^7.1.1",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@remix-run/dev": "2.10.3",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "eslint": "^8.38.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.28.1",
-    "eslint-plugin-jsx-a11y": "^6.9.0",
-    "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5",
+    "@react-router/dev": "^7.4.1",
+    "@tailwindcss/vite": "^4.1.2",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.2",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.5",
     "vite-env-only": "^3.0.3",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }
